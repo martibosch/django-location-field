@@ -341,7 +341,13 @@ var SequentialLoader = function() {
                 var self = this,
                     onchangeTimer,
                     onchange = function() {
-                        var value = $(this).val();
+                        var value = '';
+                        for (var i=0; i < self.options.basedFields.length; i++){
+                            if(i>0){
+                                value += ', '
+                            }
+                            value += self.options.basedFields[i].value;
+                        }
                         clearTimeout(onchangeTimer);
                         onchangeTimer = setTimeout(function(){
                             self.search(map, marker, value);
