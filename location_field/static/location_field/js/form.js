@@ -347,7 +347,9 @@ var SequentialLoader = function() {
                                 value += ', '
                             }
                             var field = self.options.basedFields[i];
-                            if (field.tagName == 'SELECT' && field.className.startsWith('select2-'))
+                            // With bootstrap forms there might be other classes as well
+                            // if (field.tagName == 'SELECT' && field.className.startsWith('select2-'))
+                            if (field.tagName == 'SELECT' && field.className.indexOf('select2-') !== -1)
                                 value += $('#select2-' + field.id + '-container').attr('title');
                             else
                                 value += self.options.basedFields[i].value;
